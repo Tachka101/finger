@@ -1,0 +1,12 @@
+import asyncio
+
+async def fetch(url):
+    async with await asyncio.open_connection('www.example.com', 80) as conn:
+        data = await conn.recv(100)
+        return data.decode('utf-8')
+
+async def main():
+    content = await fetch('index.html')
+    print(content)
+
+asyncio.run(main())
